@@ -1,0 +1,737 @@
+You said:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Missio Dei Fellowship</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f4f8; /* light soft blue-gray */
+      color: #333;
+    }
+    header {
+      background-color: #05445E; /* deep teal-blue */
+      color: white;
+      padding: 15px 10px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-direction: column;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    header img.logo {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #189AB4;
+      margin-bottom: 10px;
+      box-shadow: 0 0 12px #189AB4;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      margin: 2px 0;
+      letter-spacing: 2px;
+    }
+    header p {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      margin: 0;
+      font-weight: 500;
+      color: #82C0CC;
+      letter-spacing: 0.05em;
+    }
+
+    nav {
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      padding: 18px 10px;
+      flex-wrap: wrap;
+      border-bottom: 2px solid #189AB4;
+      margin-bottom: 30px;
+    }
+    nav a {
+      background-color: #189AB4; /* bright teal */
+      color: white;
+      padding: 13px 24px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(24,154,180,0.7);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      flex-shrink: 0;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      user-select: none;
+    }
+    nav a:hover {
+      background-color: #75D6E9; /* lighter teal */
+      box-shadow: 0 6px 12px rgba(117,214,233,0.8);
+      color: #05445E;
+    }
+    /* Remove hiding of activities link */
+    /* nav a[href="#activities"] {
+      display: none;
+    } */
+
+    section {
+      padding: 25px 30px;
+      margin: 0 auto 40px;
+      max-width: 1000px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      display: none;
+      background: white;
+      color: #05445E;
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 18px;
+      letter-spacing: 1.1px;
+      color: #05445E;
+      font-size: 2.2rem;
+      text-align: center;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    p {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.65;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    /* Section backgrounds with subtle tints */
+    #about {
+      background-color: #D6EFFF; /* very light sky blue */
+      color: #05445E;
+    }
+    #registerForm {
+      background-color: #FFF3E2; /* soft cream */
+      color: #7B4B1B;
+      max-width: 520px;
+    }
+    #paymentForm {
+      background-color: #FFF8DC; /* light warm cream */
+      color: #7B4B1B;
+      max-width: 520px;
+    }
+    #leaders {
+      background-color: #BEE3DB; /* soft mint */
+      color: #05445E;
+    }
+    #members {
+      background-color: #F6D6C3; /* pastel peach */
+      color: #4B2E2E;
+    }
+    #contact {
+      background-color: #41644A; /* rich olive green */
+      color: #E1E8EB;
+    }
+    #activities {
+      background-color: #E9F7F9; /* soft pale cyan */
+      color: #05445E;
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    /* Leaders grid & cards */
+    #leaders .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 18px;
+    }
+    #leaders .card {
+      background: #2C6E49; /* dark forest green */
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      font-size: 0.9rem;
+      color: #D6F0E4;
+      font-family: 'Roboto', sans-serif;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+    #leaders .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.2);
+    }
+    #leaders .card img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 3px solid #75D6E9;
+      box-shadow: 0 0 10px #75D6E9;
+    }
+    #leaders .card h3 {
+      margin: 8px 0 5px;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    #leaders .card p {
+      margin: 3px 0;
+      font-size: 0.9rem;
+      color: #A4D7CC;
+    }
+
+    /* Members grid & cards */
+    #members .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 20px;
+    }
+    #members .card {
+      background: #FF9A8D; /* soft coral */
+      padding: 18px;
+      border-radius: 14px;
+      box-shadow: 0 5px 15px rgba(255,154,141,0.4);
+      text-align: center;
+      color: #5B2C2C;
+      font-family: 'Roboto', sans-serif;
+      cursor: default;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+    #members .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(255,154,141,0.7);
+    }
+    #members .card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 12px;
+      border: 3px solid #FFF0EB;
+      box-shadow: 0 0 8px #FFF0EB;
+    }
+    #members .card h3 {
+      margin: 6px 0 4px;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    #members .card p {
+      margin: 3px 0;
+      font-size: 0.9rem;
+      color: #6E3939;
+    }
+
+    /* Forms styling */
+    #registerForm label,
+    #paymentForm label {
+      display: block;
+      margin-top: 12px;
+      font-weight: 700;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      color: #3B4C55;
+    }
+    #registerForm input, #registerForm select,
+    #paymentForm input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1.8px solid #AACFD0;
+      box-sizing: border-box;
+      font-size: 1.1rem;
+      font-family: 'Roboto', sans-serif;
+      transition: border-color 0.3s ease;
+    }
+    #registerForm input:focus, #registerForm select:focus,
+    #paymentForm input:focus {
+      outline: none;
+      border-color: #189AB4;
+      box-shadow: 0 0 6px #75D6E9;
+    }
+    #registerForm button,
+    #paymentForm button {
+      margin-top: 22px;
+      background-color: #189AB4;
+      color: white;
+      padding: 14px 0;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 14px rgba(24,154,180,0.75);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      user-select: none;
+    }
+    #registerForm button:hover,
+    #paymentForm button:hover {
+      background-color: #75D6E9;
+      color: #05445E;
+      box-shadow: 0 8px 22px rgba(117,214,233,0.85);
+    }
+
+    /* Contact Section */
+    #contact p {
+      font-size: 1.15rem;
+      margin: 8px 0;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      background: #189AB4;
+      color: white;
+      text-align: center;
+      padding: 16px 10px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    /* Signature container: two columns side-by-side */
+    .signature-container {
+      display: flex;
+      gap: 24px;
+      margin-top: 12px;
+      margin-bottom: 20px;
+    }
+    .signature-box {
+      flex: 1;
+      border: 2px dashed #189AB4;
+      border-radius: 8px;
+      height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #e6f2f7;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.95rem;
+      color: #05445E;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .signature-box input[type="file"] {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .signature-label {
+      pointer-events: none;
+    }
+    /* Display uploaded image preview inside signature box */
+    .signature-preview {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    /* Activity upload inputs */
+    #activities form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    #activities label {
+      font-weight: 700;
+      display: block;
+      margin-top: 18px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.1rem;
+      color: #05445E;
+    }
+    #activities input[type="file"] {
+      margin-top: 8px;
+      width: 100%;
+      cursor: pointer;
+    }
+    #activities button {
+      margin-top: 20px;
+      background-color: #189AB4;
+      color: white;
+      padding: 12px 0;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.15rem;
+      box-shadow: 0 4px 14px rgba(24,154,180,0.75);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      user-select: none;
+    }
+    #activities button:hover {
+      background-color: #75D6E9;
+      color: #05445E;
+      box-shadow: 0 8px 22px rgba(117,214,233,0.85);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      nav {
+        gap: 10px;
+        padding: 12px 5px;
+      }
+      nav a {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+      header h1 {
+        font-size: 1.6rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+      .signature-container {
+        flex-direction: column;
+      }
+      .signature-box {
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="mog.jpg" alt="Missio Dei Logo" class="logo" />
+  <div>
+    <h1>Missio Dei</h1>
+    <h1>Fellowship</h1>
+    <p>Living the Mission of God</p>
+  </div>
+</header>
+
+<nav>
+  <a href="#registerForm" id="registerLink">Register</a>
+  <a href="#paymentForm" id="paymentLink">Payment</a>
+  <a href="#about" id="aboutLink">About</a>
+  <a href="#activities" id="activitiesLink">Activities</a>
+  <a href="#leaders" id="leadersLink">Leaders</a>
+  <a href="#members" id="membersLink">Members</a>
+  <a href="#contact" id="contactLink">Contact</a>
+</nav>
+
+<!-- About Section -->
+<section id="about" class="active">
+  <h2>About Us</h2>
+  <p>Missio Dei Fellowship is a community of believers committed to worship, service, and spreading the gospel of Jesus Christ.</p>
+</section>
+
+<!-- Registration Form -->
+<section id="registerForm">
+  <h2>Membership Registration</h2>
+  <div style="text-align:center; margin-bottom: 20px;">
+    <img src="mog.jpg" alt="Missio Dei Logo" style="height:90px; border-radius:50%; border:3px solid #189AB4; box-shadow: 0 0 12px #189AB4;" />
+  </div>
+  <form id="membershipForm" onsubmit="return false" enctype="multipart/form-data">
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" name="fullName" required />
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" required />
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required />
+
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender" required>
+      <option value="">-- Select Gender --</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required />
+
+    <label for="passportPhoto">Upload Passport Photo:</label>
+    <input type="file" id="passportPhoto" name="passportPhoto" accept="image/*" required />
+
+    <label>Signatures:</label>
+    <div class="signature-container">
+      <div class="signature-box" title="Click to upload signature 1">
+        <span class="signature-label">Signature 1 (click to upload)</span>
+        <input type="file" id="signature1" name="signature1" accept="image/*" required onchange="previewSignature(event, 'sig1Preview')" />
+        <img id="sig1Preview" class="signature-preview" src="" alt="" style="display:none;" />
+      </div>
+      <div class="signature-box" title="Click to upload signature 2">
+        <span class="signature-label">Signature 2 (click to upload)</span>
+        <input type="file" id="signature2" name="signature2" accept="image/*" required onchange="previewSignature(event, 'sig2Preview')" />
+        <img id="sig2Preview" class="signature-preview" src="" alt="" style="display:none;" />
+      </div>
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+</section>
+
+<!-- Payment Form -->
+<section id="paymentForm">
+  <h2>Payment Form</h2>
+  <form id="paymentFormElement" onsubmit="return false">
+    <label for="orangeMoneyNumber">Orange Money Number:</label>
+    <input type="tel" id="orangeMoneyNumber" name="orangeMoneyNumber" placeholder="e.g. 232XXXXXXXXX" pattern="[0-9]{9,12}" required />
+
+    <label for="paymentAmount">Payment Amount (Leones):</label>
+    <input type="number" id="paymentAmount" name="paymentAmount" min="0" required />
+
+    <label for="paymentDate">Payment Date:</label>
+    <input type="date" id="paymentDate" name="paymentDate" required />
+
+    <button type="submit">Submit Payment</button>
+  </form>
+</section>
+
+<!-- Activities Section -->
+<section id="activities">
+  <h2>Activities</h2>
+  <form id="activitiesForm" onsubmit="return false" enctype="multipart/form-data">
+    <label for="activityTitle">Activity Title:</label>
+    <input type="text" id="activityTitle" name="activityTitle" required />
+
+    <label for="activityDescription">Activity Description:</label>
+    <textarea id="activityDescription" name="activityDescription" rows="4" style="width: 100%; padding:10px; border-radius:6px; border:1.8px solid #AACFD0; font-family: 'Roboto', sans-serif; font-size: 1.1rem;" required></textarea>
+
+    <label for="activityImages">Upload Activity Pictures (you can select multiple):</label>
+    <input type="file" id="activityImages" name="activityImages" accept="image/*" multiple />
+
+    <button type="submit">Add Activity</button>
+  </form>
+  <div id="activityGallery" style="margin-top:30px; display:flex; flex-wrap:wrap; gap:15px; justify-content:center;"></div>
+</section>
+
+<!-- Leaders Section -->
+<section id="leaders">
+  <h2>Fellowship Leaders</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="{{ url_for('static', filename='joe.jpg') }}" alt="Jonathan S. Kamara" />
+      <h3>Jonathan S. Kamara</h3>
+      <p>Chairman</p>
+      <p>Email: jonathankamara26@gmail.com</p>
+    </div>
+    <div class="card">
+      <img src="ras.jpg" alt="Rashid K. Baimba" />
+      <h3>Rashid K. Baimba</h3>
+      <p>Assistant Chairperson</p>
+      <p>Email: rkb@gmail.com</p>
+    </div>
+    <div class="card">
+      <img src="chr.jpg" alt="Christian Davies" />
+      <h3>Christian Davies</h3>
+      <p>Financial Secretary</p>
+      <p>Email: chrdav@gmail.com</p>
+    </div>
+    <div class="card">
+      <img src="amie.jpg" alt="Aminata Kamanda" />
+      <h3>Aminata Kamanda</h3>
+      <p>Secretary</p>
+      <p>Email: aminat@gmail.com</p>
+    </div>
+    <div class="card">
+      <img src="1.jpg" alt="Mohamed Kemoh" />
+      <h3>Mohamed Kemoh</h3>
+      <p>Public Relations Officer</p>
+      <p>Email: mkemoh@gmail.com</p>
+    </div>
+    <div class="card">
+      <img src="2.jpg" alt="Admire B. Komba" />
+      <h3>Admire B. Komba</h3>
+      <p>Leader</p>
+      <p>Email: admirebk@gmail.com</p>
+    </div>
+  </div>
+</section>
+
+<!-- Members Section -->
+<section id="members">
+  <h2>Members</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="{{ url_for('static', filename='zai.jpg') }} alt="Zainab Kanu" />
+      <h3>Zainab Kanu</h3>
+      <p>Member since 2022</p>
+    </div>
+    <div class="card">
+      <img src="jay.jpg" alt="Jeneba Mansaray" />
+      <h3>Jeneba Mansaray</h3>
+      <p>Member since 2022</p>
+    </div>
+    <div class="card">
+      <img src="mah.jpg" alt="Mahawa Koroma" />
+      <h3>Mahawa Koroma</h3>
+      <p>Member since 2021</p>
+    </div>
+    <div class="card">
+      <img src="alf.jpg" alt="Alfred K. Bundu" />
+      <h3>Alfred K. Bundu</h3>
+      <p>Member since 2020</p>
+    </div>
+    <div class="card">
+      <img src="haw.jpg" alt="Hawa Swarray" />
+      <h3>Hawa Swarray</h3>
+      <p>Member since 2021</p>
+    </div>
+    <div class="card">
+      <img src="eve.jpg" alt="Evett I. Sesay" />
+      <h3>Evett I. Sesay</h3>
+      <p>Member since 2020</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Phone: +232-9999-1579</p>
+  <p>Phone: +232-3009-5550</p>
+  <p>Phone: +232-0309-5550</p>
+  <p>Phone: +232-7469-0160</p>
+  <p>Phone: +232-7541-8053</p>
+  <p>Email: mission@example.com</p>
+</section>
+
+<footer>
+  &copy; 2025 Missio Dei Fellowship. All rights reserved.
+</footer>
+
+<script>
+  // Navigation toggle logic: Show/hide sections on nav link click
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (!targetSection) return;
+
+      const allSections = document.querySelectorAll('section');
+
+      // If clicked section is already active, close it
+      if (targetSection.classList.contains('active')) {
+        targetSection.classList.remove('active');
+      } else {
+        // Hide all other sections and show the clicked one
+        allSections.forEach(sec => sec.classList.remove('active'));
+        targetSection.classList.add('active');
+        // Scroll top smoothly for better UX
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Signature preview handler
+  function previewSignature(event, previewId) {
+    const input = event.target;
+    const preview = document.getElementById(previewId);
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+        preview.previousElementSibling.style.display = 'none'; // Hide label text
+      }
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      preview.src = '';
+      preview.style.display = 'none';
+      preview.previousElementSibling.style.display = 'block'; // Show label text
+    }
+  }
+
+  // Activities form handling (client side example)
+  const activitiesForm = document.getElementById('activitiesForm');
+  const activityGallery = document.getElementById('activityGallery');
+
+  activitiesForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const title = document.getElementById('activityTitle').value.trim();
+    const description = document.getElementById('activityDescription').value.trim();
+    const imagesInput = document.getElementById('activityImages');
+
+    if (!title || !description) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    // Create a container for the new activity
+    const activityDiv = document.createElement('div');
+    activityDiv.style.border = '1.8px solid #189AB4';
+    activityDiv.style.borderRadius = '12px';
+    activityDiv.style.padding = '14px';
+    activityDiv.style.marginBottom = '25px';
+    activityDiv.style.background = '#E0F3F7';
+    activityDiv.style.maxWidth = '600px';
+
+    const h3 = document.createElement('h3');
+    h3.textContent = title;
+    h3.style.color = '#05445E';
+
+    const pDesc = document.createElement('p');
+    pDesc.textContent = description;
+    pDesc.style.color = '#05445E';
+
+    activityDiv.appendChild(h3);
+    activityDiv.appendChild(pDesc);
+
+    // Display images previews
+    if (imagesInput.files.length > 0) {
+      const imagesContainer = document.createElement('div');
+      imagesContainer.style.display = 'flex';
+      imagesContainer.style.flexWrap = 'wrap';
+      imagesContainer.style.gap = '12px';
+      imagesContainer.style.marginTop = '10px';
+
+      Array.from(imagesInput.files).forEach(file => {
+        const img = document.createElement('img');
+        img.style.width = '120px';
+        img.style.height = '90px';
+        img.style.objectFit = 'cover';
+        img.style.borderRadius = '8px';
+        img.style.border = '2px solid #189AB4';
+        img.style.boxShadow = '0 0 8px #75D6E9';
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          img.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+
+        imagesContainer.appendChild(img);
+      });
+
+      activityDiv.appendChild(imagesContainer);
+    }
+
+    activityGallery.prepend(activityDiv); // Add new activity on top
+
+    // Reset form
+    activitiesForm.reset();
+  });
+</script>
+
+</body>
+</html>
