@@ -9,10 +9,10 @@ app = Flask(__name__)
 EMAIL_ADDRESS = os.environ.get("EMAIL_USER")  # e.g., set EMAIL_USER=missiodei050@gmail.com
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASS")  # e.g., set EMAIL_PASS=yabkpwxfcummqpsz
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
-
 @app.route('/register', methods=['POST'])
 def register():
     fullName = request.form['fullName']
@@ -40,8 +40,11 @@ def register():
 
     try:
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+
             smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+
             smtp.send_message(msg)
+
     except Exception as e:
         return f"Error: {e}"
 

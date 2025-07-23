@@ -467,7 +467,6 @@
 
   <!-- IMPORTANT: Form tag points to /register with POST -->
   <form action="/register" method="POST" style="max-width: 500px; margin: 0 auto; background: #FFF; padding: 25px; border: 2px solid #189AB4; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);" enctype="multipart/form-data">
-
     <label for="fullName">Full Name:</label>
     <input type="text" id="fullName" name="fullName" required />
 
@@ -493,12 +492,6 @@
 
     <label for="passportPhoto">Upload Passport Photo:</label>
     <input type="file" id="passportPhoto" name="passportPhoto" accept="image/*" required />
-
-    <div class="signature-box" style="flex:1; border: 2px dashed #189AB4; border-radius: 8px; height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #e6f2f7; position: relative; overflow: hidden;">
-      <span class="signature-label">Signature (click to upload)</span>
-      <input type="file" id="signature2" name="signature2" accept="image/*" required onchange="previewSignature(event, 'sig2Preview')" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;" />
-      <img id="sig2Preview" class="signature-preview" src="" alt="" style="display:none; max-width:100%; max-height:100%; object-fit: contain; border-radius:6px;" />
-    </div>
 
     <!-- Declaration -->
     <div style="margin-top: 20px; padding: 15px; border: 2px solid #189AB4; border-radius: 8px; background: #f9f9f9;">
