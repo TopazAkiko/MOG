@@ -6,8 +6,8 @@ import os
 app = Flask(__name__)
 
 # Use environment variables for security!
-EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")  # e.g., missiodei050@gmail.com
-EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")  # Your Gmail App Password
+EMAIL_ADDRESS = os.environ.get("missiodei050@gmail.com")  # e.g., missiodei050@gmail.com
+EMAIL_PASSWORD = os.environ.get("yabkpwxfcummqpsz")  # Your Gmail App Password
 
 @app.route('/')
 def index():
