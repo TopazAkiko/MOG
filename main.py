@@ -34,7 +34,7 @@ def register():
 
     # You must create a Gmail App Password, do NOT use your normal password
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login('YOUR_GMAIL@gmail.com', 'YOUR_APP_PASSWORD')
+        smtp.login('missiodei050@gmail.com', 'yabkpwxfcummqpsz')
         smtp.send_message(msg)
 
     return 'Registration submitted successfully!'
