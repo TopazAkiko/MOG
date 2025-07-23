@@ -26,7 +26,7 @@ def register():
     msg = EmailMessage()
     msg['Subject'] = 'New Missio Dei Fellowship Registration'
     msg['From'] = EMAIL_ADDRESS  # This MUST match the logged in email!
-    msg['To'] = 'missionofgod55@gmail.com'
+    msg['To'] = 'missiodei050@gmail.com'
 
     msg.set_content(f'''
     Full Name: {fullName}
