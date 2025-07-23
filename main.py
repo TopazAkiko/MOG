@@ -37,9 +37,7 @@ def register():
     Address: {address}
     Declaration Agreed: {declaration}
     ''')
-
     try:
-        try:
             with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
                 smtp.login("missiodei050@gmail.com", "yabkpwxfcummqpsz")
                 smtp.send_message(msg)
