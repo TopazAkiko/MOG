@@ -5,13 +5,13 @@ import os
 
 app = Flask(__name__)
 
-# Use environment variables for security!
-EMAIL_ADDRESS = os.environ.get("missiodei050@gmail.com")  # e.g., missiodei050@gmail.com
-EMAIL_PASSWORD = os.environ.get("yabkpwxfcummqpsz")  # Your Gmail App Password
+# Load from environment variables (good practice)
+EMAIL_ADDRESS = os.environ.get("EMAIL_USER")  # e.g., set EMAIL_USER=missiodei050@gmail.com
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASS")  # e.g., set EMAIL_PASS=yabkpwxfcummqpsz
 
 @app.route('/')
 def index():
-    return render_template('index.html')  # Your HTML page
+    return render_template('index.html')
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -25,7 +25,7 @@ def register():
 
     msg = EmailMessage()
     msg['Subject'] = 'New Missio Dei Fellowship Registration'
-    msg['From'] = EMAIL_ADDRESS  # This MUST match the logged in email!
+    msg['From'] = EMAIL_ADDRESS
     msg['To'] = 'missiodei050@gmail.com'
 
     msg.set_content(f'''
@@ -37,14 +37,15 @@ def register():
     Address: {address}
     Declaration Agreed: {declaration}
     ''')
-    try:
-            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-                smtp.login("missiodei050@gmail.com", "yabkpwxfcummqpsz")
-                smtp.send_message(msg)
-        except Exception as e:
-            return f"Error: {e}"
 
-        return 'Registration submitted successfully!'
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+            smtp.send_message(msg)
+    except Exception as e:
+        return f"Error: {e}"
+
+    return 'Registration submitted successfully!'
 
 if __name__ == '__main__':
     app.run(debug=True)
