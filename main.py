@@ -1,12 +1,17 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 import smtplib
 from email.message import EmailMessage
+import os
 
 app = Flask(__name__)
 
+# Use environment variables for security!
+EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")  # e.g., missiodei050@gmail.com
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")  # Your Gmail App Password
+
 @app.route('/')
 def index():
-    return render_template('index.html')  # your HTML file
+    return render_template('index.html')  # Your HTML page
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -20,8 +25,9 @@ def register():
 
     msg = EmailMessage()
     msg['Subject'] = 'New Missio Dei Fellowship Registration'
-    msg['From'] = 'YOUR_GMAIL@gmail.com'
+    msg['From'] = EMAIL_ADDRESS  # This MUST match the logged in email!
     msg['To'] = 'missionofgod55@gmail.com'
+
     msg.set_content(f'''
     Full Name: {fullName}
     Email: {email}
@@ -32,10 +38,12 @@ def register():
     Declaration Agreed: {declaration}
     ''')
 
-    # You must create a Gmail App Password, do NOT use your normal password
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login('missiodei050@gmail.com', 'yabkpwxfcummqpsz')
-        smtp.send_message(msg)
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+            smtp.send_message(msg)
+    except Exception as e:
+        return f"Error: {e}"
 
     return 'Registration submitted successfully!'
 
