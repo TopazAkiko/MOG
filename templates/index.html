@@ -43,6 +43,14 @@
   margin-bottom: 20px;
   display: inline-block;
 }
+.logo {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #189AB4;
+  box-shadow: 0 0 12px #189AB4;
+}
 
     header h1 {
       font-family: 'Playfair Display', serif;
@@ -451,10 +459,14 @@
 <!-- Registration Form -->
 <section id="registerForm">
   <h2>Membership Registration</h2>
+
+  <!-- Logo in circle -->
   <div style="text-align:center; margin-bottom: 20px;">
-   <img src="{{ url_for('static', filename='mog.jpg') }}" alt="logo"  class="form-logo"/>
+    <img src="{{ url_for('static', filename='mog.jpg') }}" alt="Missio Dei Logo" class="logo" />
   </div>
-  <form id="membershipForm" onsubmit="return false" enctype="multipart/form-data">
+
+  <!-- Form container -->
+  <form id="membershipForm" style="max-width: 500px; margin: 0 auto; background: #FFF; padding: 25px; border: 2px solid #189AB4; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);" enctype="multipart/form-data">
     <label for="fullName">Full Name:</label>
     <input type="text" id="fullName" name="fullName" required />
 
@@ -481,19 +493,29 @@
     <label for="passportPhoto">Upload Passport Photo:</label>
     <input type="file" id="passportPhoto" name="passportPhoto" accept="image/*" required />
 
-    <label>Signatures:</label>
-    <div class="signature-container">
-      <div class="signature-box" title="Click to upload signature 1">
-        <span class="signature-label">Signature 1 (click to upload)</span>
-        <input type="file" id="signature1" name="signature1" accept="image/*" required onchange="previewSignature(event, 'sig1Preview')" />
-        <img id="sig1Preview" class="signature-preview" src="" alt="" style="display:none;" />
-      </div>
-      <div class="signature-box" title="Click to upload signature 2">
+      <div class="signature-box" style="flex:1; border: 2px dashed #189AB4; border-radius: 8px; height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #e6f2f7; position: relative; overflow: hidden;">
         <span class="signature-label">Signature 2 (click to upload)</span>
-        <input type="file" id="signature2" name="signature2" accept="image/*" required onchange="previewSignature(event, 'sig2Preview')" />
-        <img id="sig2Preview" class="signature-preview" src="" alt="" style="display:none;" />
+        <input type="file" id="signature2" name="signature2" accept="image/*" required onchange="previewSignature(event, 'sig2Preview')" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;" />
+        <img id="sig2Preview" class="signature-preview" src="" alt="" style="display:none; max-width:100%; max-height:100%; object-fit: contain; border-radius:6px;" />
       </div>
     </div>
+
+    <!-- Declaration -->
+    <div style="margin-top: 20px; padding: 15px; border: 2px solid #189AB4; border-radius: 8px; background: #f9f9f9;">
+      <p style="font-weight: bold; margin: 0;">Declaration:</p>
+      <p style="margin: 5px 0 10px;">
+        I hereby declare my intention to join Missio Dei Fellowship and abide by its vision and mission, giving my full support and commitment.
+      </p>
+      <label style="display: flex; align-items: center;">
+        <input type="checkbox" id="declaration" name="declaration" required style="margin-right: 8px;" />
+        I agree to the declaration above.
+      </label>
+    </div>
+
+    <!-- Email notice -->
+    <p style="margin-top: 15px; font-size: 0.95rem; color: #333;">
+      Once submitted, this form will be sent to: <strong>missionofgod55@gmail.com</strong>
+    </p>
 
     <button type="submit">Register</button>
   </form>
@@ -504,7 +526,7 @@
   <h2>Payment Form</h2>
   <form id="paymentFormElement" onsubmit="return false">
     <label for="orangeMoneyNumber">Orange Money Number:</label>
-    <input type="tel" id="orangeMoneyNumber" name="orangeMoneyNumber" placeholder="e.g. 232XXXXXXXXX" pattern="[0-9]{9,12}" required />
+    <input type="tel" id="orangeMoneyNumber" name="orangeMoneyNumber" placeholder="23279-841-987" pattern="[0-9]{9,12}" required />
 
     <label for="paymentAmount">Payment Amount (Leones):</label>
     <input type="number" id="paymentAmount" name="paymentAmount" min="0" required />
@@ -627,7 +649,7 @@
   <p>Phone: +232-0309-5550</p>
   <p>Phone: +232-7469-0160</p>
   <p>Phone: +232-7541-8053</p>
-  <p>Email: mission@example.com</p>
+  <p>Email: missionofgod55@gmail.com</p>
 </section>
 
 <footer>
