@@ -39,13 +39,14 @@ def register():
     ''')
 
     try:
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-            smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-            smtp.send_message(msg)
-    except Exception as e:
-        return f"Error: {e}"
+        try:
+            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+                smtp.login("missiodei050@gmail.com", "yabkpwxfcummqpsz")
+                smtp.send_message(msg)
+        except Exception as e:
+            return f"Error: {e}"
 
-    return 'Registration submitted successfully!'
+        return 'Registration submitted successfully!'
 
 if __name__ == '__main__':
     app.run(debug=True)
